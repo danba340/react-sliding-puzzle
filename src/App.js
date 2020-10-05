@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import Board from "./Board";
 
 function App() {
-  return <div className="App"></div>;
+  const [imageUrl, setImageUrl] = useState("");
+  const handleImageChange = (event) => {
+    setImageUrl(event.target.value);
+  };
+  return (
+    <div className="App">
+      <Board rows={4} cols={4} width={512} height={512} image={imageUrl} />
+      <label>
+        Image:
+        <input onChange={handleImageChange} type="text" name="name" />
+      </label>
+    </div>
+  );
 }
 
 export default App;
