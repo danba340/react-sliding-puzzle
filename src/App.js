@@ -8,7 +8,7 @@ function App() {
   };
   return (
     <div className="App">
-      <Board rows={4} cols={4} width={512} height={512} image={imageUrl} />
+      <Board rows={4} cols={4} width={320} height={320} image={imageUrl} />
       <label>
         Image:
         <input onChange={handleImageChange} type="text" name="name" />
