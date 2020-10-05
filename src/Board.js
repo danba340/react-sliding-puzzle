@@ -23,6 +23,9 @@ function Board(props) {
 
   const handleTileClick = (index) => {
     swapTiles(index);
+    if (isSolved(tiles)) {
+      alert("You did it!");
+    }
   };
 
   const handleButtonClick = () => {
