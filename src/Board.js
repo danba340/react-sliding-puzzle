@@ -55,7 +55,7 @@ function Board(props) {
       </ul>
       <div>{solved && started ? "Puzzle solved 🧠 🎉" : ""}</div>
       <button onClick={handleButtonClick}>
-        {solved ? "Start" : "Restart"}
+        {!started || solved ? "Start" : "Restart"}
       </button>
     </>
   );
