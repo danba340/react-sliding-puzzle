@@ -5,7 +5,8 @@ import Tile from "./Tile";
 function Board(props) {
   const { rows, cols, width, height, image } = props;
   const [tiles, setTiles] = useState([...Array(rows * cols).keys()]);
-  console.log(tiles);
+  const [started, setStarted] = useState(false);
+
   const shuffleTiles = () => {
     const shuffledTiles = shuffle(tiles, rows, cols);
     setTiles(shuffledTiles);
@@ -16,20 +17,15 @@ function Board(props) {
       const newTiles = swap(tiles, tileIndex, tiles.indexOf(tiles.length - 1));
       setTiles(newTiles);
     }
-    if (isSolved(tiles)) {
-      alert("You did it!");
-    }
   };
 
   const handleTileClick = (index) => {
     swapTiles(index);
-    if (isSolved(tiles)) {
-      alert("You did it!");
-    }
   };
 
   const handleButtonClick = () => {
     shuffleTiles();
+    setStarted(true);
   };
 
   const solved = isSolved(tiles);
@@ -57,6 +53,7 @@ function Board(props) {
           />
         ))}
       </ul>
+      <div>{solved && started ? "Puzzle solved 🧠 🎉" : ""}</div>
       <button onClick={handleButtonClick}>
         {solved ? "Start" : "Restart"}
       </button>
