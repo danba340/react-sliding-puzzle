@@ -25,6 +25,7 @@ function Board() {
           />
         ))}
       </ul>
+      <button>Start game</button>
     </>
   );
 }
