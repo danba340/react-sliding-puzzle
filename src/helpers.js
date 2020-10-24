@@ -52,9 +52,9 @@ export function shuffle(tiles) {
     : shuffle(shuffledTiles);
 }
 
-export function canSwap(src, dest, GRID_SIZE) {
-  const { row: srcRow, col: srcCol } = getMatrixPosition(src, GRID_SIZE);
-  const { row: destRow, col: destCol } = getMatrixPosition(dest, GRID_SIZE);
+export function canSwap(srcIndex, destIndex) {
+  const { row: srcRow, col: srcCol } = getMatrixPosition(srcIndex);
+  const { row: destRow, col: destCol } = getMatrixPosition(destIndex);
   return Math.abs(srcRow - destRow) + Math.abs(srcCol - destCol) === 1;
 }
 
