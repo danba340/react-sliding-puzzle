@@ -1,46 +1,32 @@
 import React from "react";
-import { Motion, spring } from "react-motion";
 import { getMatrixPosition, getVisualPosition } from "./helpers";
+import { TILE_COUNT, GRID_SIZE } from "./constants"
 
 function Tile(props) {
-  const { tile, index, rows, cols, width, height, boardSize, image } = props;
+  const { tile, index, width, height } = props;
 
-  const handleClick = () => {
-    props.onClick(index);
-  };
-
-  const matrixPos = getMatrixPosition(index, rows, cols);
-  const visualPos = getVisualPosition(matrixPos, width, height);
-  const motionStyle = {
-    translateX: spring(visualPos.x),
-    translateY: spring(visualPos.y),
-  };
+  const { row, col } = getMatrixPosition(index);
+  const visualPos = getVisualPosition(row, col, width, height);
   const tileStyle = {
-    width: `calc(100% / ${rows})`,
-    height: `calc(100% / ${cols})`,
-    backgroundImage: `url(${image})`,
-    backgroundSize: `${boardSize * 1.25}px`,
-    backgroundPosition: `${(100 / cols) * (tile % cols)}% ${
-      (100 / rows) * Math.floor(tile / rows)
-    }%`,
+    width: `calc(100% / ${GRID_SIZE})`,
+    height: `calc(100% / ${GRID_SIZE})`,
+    translateX: visualPos.x,
+    translateY: visualPos.y,
   };
 
   return (
-    <Motion style={motionStyle}>
-      {({ translateX, translateY }) => (
-        <li
-          style={{
-            transform: `translate3d(${translateX}px, ${translateY}px, 0)`,
-            opacity: tile === rows * cols - 1 ? 0 : 1,
-            ...tileStyle,
-          }}
-          onClick={handleClick}
-          className="tile"
-        >
-          {image.length ? "" : tile + 1}
-        </li>
-      )}
-    </Motion>
+    <li
+      style={{
+        width: tileStyle.width,
+        height: tileStyle.height,
+        transform: `translate3d(${tileStyle.translateX}px, ${tileStyle.translateY}px, 0)`,
+        // Is last tile?
+        opacity: tile === TILE_COUNT - 1 ? 0 : 1,
+      }}
+      className="tile"
+    >
+      {tile + 1}
+    </li>
   );
 }
 

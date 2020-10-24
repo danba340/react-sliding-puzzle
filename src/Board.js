@@ -1,39 +1,15 @@
 import React, { useState } from "react";
-import { canSwap, isSolved, shuffle, swap } from "./helpers";
 import Tile from "./Tile";
+import { TILE_COUNT, GRID_SIZE, BOARD_SIZE } from "./constants"
 
-function Board(props) {
-  const { rows, cols, width, height, image } = props;
-  const [tiles, setTiles] = useState([...Array(rows * cols).keys()]);
-  const [started, setStarted] = useState(false);
+function Board() {
+  const [tiles, setTiles] = useState([...Array(TILE_COUNT).keys()]);
 
-  const shuffleTiles = () => {
-    const shuffledTiles = shuffle(tiles, rows, cols);
-    setTiles(shuffledTiles);
-  };
-
-  const swapTiles = (tileIndex) => {
-    if (canSwap(tileIndex, tiles.indexOf(tiles.length - 1), rows, cols)) {
-      const newTiles = swap(tiles, tileIndex, tiles.indexOf(tiles.length - 1));
-      setTiles(newTiles);
-    }
-  };
-
-  const handleTileClick = (index) => {
-    swapTiles(index);
-  };
-
-  const handleButtonClick = () => {
-    shuffleTiles();
-    setStarted(true);
-  };
-
-  const solved = isSolved(tiles);
-  const pieceWidth = Math.round(width / cols);
-  const pieceHeight = Math.round(height / rows);
+  const pieceWidth = Math.round(BOARD_SIZE / GRID_SIZE);
+  const pieceHeight = Math.round(BOARD_SIZE / GRID_SIZE);
   const style = {
-    width,
-    height,
+    width: BOARD_SIZE,
+    height: BOARD_SIZE,
   };
 
   return (
@@ -41,22 +17,14 @@ function Board(props) {
       <ul style={style} className="board">
         {tiles.map((tile, index) => (
           <Tile
-            {...props}
+            key={tile}
             index={index}
             tile={tile}
-            key={tile}
             width={pieceWidth}
             height={pieceHeight}
-            boardSize={width}
-            image={image}
-            onClick={handleTileClick}
           />
         ))}
       </ul>
-      <div>{solved && started ? "Puzzle solved 🧠 🎉" : ""}</div>
-      <button onClick={handleButtonClick}>
-        {!started || solved ? "Start" : "Restart"}
-      </button>
     </>
   );
 }

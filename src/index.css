@@ -30,7 +30,7 @@ code {
   position: absolute;
   list-style: none;
   margin: 0 auto;
-  background: #ec6f66; /* fallback for old browsers */
+  background: #ec6f66;
   display: block;
   display: grid;
   place-items: center;
