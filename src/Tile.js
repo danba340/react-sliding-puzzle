@@ -36,7 +36,7 @@ function Tile(props) {
           className="tile"
           onClick={() => handleTileClick(index)}
         >
-
+          {!imgUrl && `${tile + 1}`}
         </li>
       )}
     </Motion>
