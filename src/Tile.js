@@ -19,10 +19,11 @@ function Tile(props) {
     width: `calc(100% / ${rows})`,
     height: `calc(100% / ${cols})`,
     backgroundImage: `url(${image})`,
-    backgroundSize: `${boardSize * 1.25}px`,
-    backgroundPosition: `${(100 / cols) * (tile % cols)}% ${
-      (100 / rows) * Math.floor(tile / rows)
-    }%`,
+    backgroundSize: `100%`,
+    // backgroundSize: `${boardSize * 1.25}px`,
+    // backgroundPosition: `${(100 / cols) * (tile % cols)}% ${
+    //   (100 / rows) * Math.floor(tile / rows)
+    // }%`,
   };
 
   return (

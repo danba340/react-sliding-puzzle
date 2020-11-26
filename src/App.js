@@ -4,6 +4,24 @@ import { updateURLParameter } from "./helpers";
 
 function App() {
   const [imageUrl, setImageUrl] = useState("");
+  const images = [
+    imageUrl,
+    imageUrl,
+    imageUrl,
+    imageUrl,
+    imageUrl,
+    "https://play-lh.googleusercontent.com/IeNJWoKYx1waOhfWF6TiuSiWBLfqLb18lmZYXSgsH1fvb8v1IYiZr5aYWe0Gxu-pVZX3",
+    imageUrl,
+    imageUrl,
+    imageUrl,
+    "https://g.foolcdn.com/editorial/images/567322/square01.jpg",
+    imageUrl,
+    imageUrl,
+    imageUrl,
+    imageUrl,
+    imageUrl,
+    imageUrl,
+  ];
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -21,7 +39,14 @@ function App() {
   };
   return (
     <div className="App">
-      <Board rows={4} cols={4} width={320} height={320} image={imageUrl} />
+      <Board
+        rows={4}
+        cols={4}
+        width={320}
+        height={320}
+        image={imageUrl}
+        images={images}
+      />
       <label>
         Image:
         <input

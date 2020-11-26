@@ -3,7 +3,7 @@ import { canSwap, isSolved, shuffle, swap } from "./helpers";
 import Tile from "./Tile";
 
 function Board(props) {
-  const { rows, cols, width, height, image } = props;
+  const { rows, cols, width, height, image, images } = props;
   const [tiles, setTiles] = useState([...Array(rows * cols).keys()]);
   const [started, setStarted] = useState(false);
 
@@ -48,7 +48,7 @@ function Board(props) {
             width={pieceWidth}
             height={pieceHeight}
             boardSize={width}
-            image={image}
+            image={images[tile]}
             onClick={handleTileClick}
           />
         ))}
