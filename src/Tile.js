@@ -14,8 +14,8 @@ function Tile(props) {
     translateX: visualPos.x,
     translateY: visualPos.y,
     backgroundImage: `url(${imgUrl})`,
-    backgroundSize: `${BOARD_SIZE * 1.25}px`,
-    backgroundPosition: `${(100 / GRID_SIZE) * (tile % GRID_SIZE)}% ${(100 / GRID_SIZE) * (Math.floor(tile / GRID_SIZE))}%`,
+    backgroundSize: `${BOARD_SIZE}px`,
+    backgroundPosition: `${(100 / (GRID_SIZE - 1)) * (tile % GRID_SIZE)}% ${(100 / (GRID_SIZE - 1)) * (Math.floor(tile / GRID_SIZE))}%`,
 
   };
   const motionStyle = {
